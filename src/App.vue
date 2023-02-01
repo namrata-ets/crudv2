@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
+   
     <HelloWorld msg="CRUD OPERATIONS USING VUE2"/>
   </div>
 </template>

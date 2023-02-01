@@ -8,11 +8,13 @@
     <label> Airline </label>
     <input type="text" placeholder="Airline" v-model="airline"/><br><br>
     <button  type="button" :on-click="addPassenger()" >Add Passenger</button>
+  
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+
 
 
 export default {
@@ -24,15 +26,22 @@ export default {
     return{
     airlineData:[],
     todoItem:{},
-    pname:'',
+    pname:'Name',
     nooftrips:0,
-    airline:''
+    airline:'Air India'
   }
   },
   methods:{
-    addPassenger(){
+    async addPassenger(){
       // eslint-disable-next-line no-undef
-      console.log("Button clicked to add a Passenger");
+      console.log(this.pname);
+      await axios.post('https://api.instantwebtools.net/v1/passenger',
+      this.pname,
+      this.nooftrips,
+      this.airline).then((response)=>{
+        console.log(response.data)
+      }).catch(error=>console.log(error));
+      
     },
   async getData(){
    await axios.get(
