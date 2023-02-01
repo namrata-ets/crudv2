@@ -1,12 +1,12 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1> 
-    <label>Passenger Name </label>
-    <input type="text" placeholder="Name"/><br><br>
+    <label >Passenger Name </label>
+    <input type="text" placeholder="Name" v-model="pname"/><br><br>
     <label>Number of Trips </label>
-    <input type="text" placeholder="Name"/><br><br>
+    <input type="text" placeholder="No. Of Trips" v-model="nooftrips"/><br><br>
     <label> Airline </label>
-    <input type="text" placeholder="Name"/><br><br>
+    <input type="text" placeholder="Airline" v-model="airline"/><br><br>
     <button on-submit="addPassenger">Add Passenger</button>
   </div>
 </template>
@@ -23,12 +23,19 @@ export default {
   data(){
     return{
     airlineData:[],
-    todoItem:{}
+    todoItem:{},
+    pname:'',
+    NoOfTrips:0,
+    Airline:''
   }
   },
   methods:{
     addPassenger(){
+      // eslint-disable-next-line no-undef
+      this.pname=this.pname.value;
+      this.NoOfTrips=this.nooftrips.value;
 
+      
     },
   async getData(){
    await axios.get(
