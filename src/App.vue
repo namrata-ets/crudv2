@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-   
     <HelloWorld msg="AIRLINE RESERVATION - PASSENGER DETAILS"/>
   </div>
 </template>
