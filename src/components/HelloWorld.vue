@@ -32,7 +32,7 @@ export default {
     },
   async getData(){
    await axios.get(
-    `http://api.instantwebtools.net/v1/passenger?page=0&size=10`
+    `https://api.instantwebtools.net/v1/passenger?page=0&size=10`
   ).then((response)=>console.log(response.data ))
   .catch(error=>console.log(error))
   }
