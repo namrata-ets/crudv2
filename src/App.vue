@@ -1,7 +1,7 @@
 <template>
   <div id="app">
    
-    <HelloWorld msg="CRUD OPERATIONS USING VUE2"/>
+    <HelloWorld msg="AIRLINE RESERVATION - PASSENGER DETAILS"/>
   </div>
 </template>
 

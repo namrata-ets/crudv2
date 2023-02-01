@@ -1,21 +1,45 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1> 
-    <label >Passenger Name </label>
-    <input type="text" placeholder="Name" v-model="pname"/><br><br>
+    <div>
+      <label >Passenger Name </label>
+      <input type="text" placeholder="Name" v-model="pname"/><br><br>
+    </div>
+    <div>
     <label>Number of Trips </label>
     <input type="text" placeholder="No. Of Trips" v-model="nooftrips"/><br><br>
+    </div>
+    <div>
     <label> Airline </label>
     <input type="text" placeholder="Airline" v-model="airline"/><br><br>
+    </div>
     <button  type="button" :on-click="addPassenger()" >Add Passenger</button>
-  
-  </div>
+  <br><br>
+  <table border="1" style="margin:auto">
+    <thead>
+      <tr>
+        <th style="width: 100px">Passenger Name</th>
+        <th style="width: 100px">Number Of Trips</th>
+        <th style="width: 100px">Airline</th>   
+        <th style="width: 100px"></th>    
+        <th style="width: 100px"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="data in airlineData" v-bind:key="data.id">
+        <td>{{ data.airline }}</td>
+        <td>{{ data.name }}</td>
+        <td>{{ data.trips }}</td>  
+        <td><button type="button" v-on:click="updatePassenger(data.id)">Edit</button></td>    
+        <td><button type="button" v-on:click="deletePassenger(data.id)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 </template>
 
 <script>
 import axios from 'axios';
-
-
 
 export default {
   name: 'HelloWorld',
@@ -25,7 +49,6 @@ export default {
   data(){
     return{
     airlineData:[],
-    todoItem:{},
     pname:'Name',
     nooftrips:0,
     airline:'Air India'
@@ -33,12 +56,12 @@ export default {
   },
   methods:{
     async addPassenger(){
-      // eslint-disable-next-line no-undef
-      console.log(this.pname);
-      await axios.post('https://api.instantwebtools.net/v1/passenger',
-      this.pname,
-      this.nooftrips,
-      this.airline).then((response)=>{
+     
+      //console.log(this.pname);
+      await axios.post('https://api.instantwebtools.net/v1/passenger',{
+        "name":this.pname,
+        "trips":this.nooftrips,
+        "airline":this.airline}).then((response)=>{
         console.log(response.data)
       }).catch(error=>console.log(error));
       
@@ -46,13 +69,14 @@ export default {
   async getData(){
    await axios.get(
     `https://api.instantwebtools.net/v1/passenger?page=0&size=10`
-  ).then((response)=>console.log(response.data ))
+  ).then((response)=>this.airlineData=response.data)
   .catch(error=>console.log(error))
+  console.log(this.airlineData);
   }
   },
+
  mounted(){
   this.getData();
-  
   }  
 }
 
