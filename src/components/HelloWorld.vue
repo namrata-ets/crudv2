@@ -7,7 +7,7 @@
     <input type="text" placeholder="No. Of Trips" v-model="nooftrips"/><br><br>
     <label> Airline </label>
     <input type="text" placeholder="Airline" v-model="airline"/><br><br>
-    <button on-submit="addPassenger">Add Passenger</button>
+    <button  type="button" :on-click="addPassenger()" >Add Passenger</button>
   </div>
 </template>
 
@@ -25,17 +25,14 @@ export default {
     airlineData:[],
     todoItem:{},
     pname:'',
-    NoOfTrips:0,
-    Airline:''
+    nooftrips:0,
+    airline:''
   }
   },
   methods:{
     addPassenger(){
       // eslint-disable-next-line no-undef
-      this.pname=this.pname.value;
-      this.NoOfTrips=this.nooftrips.value;
-
-      
+      console.log("Button clicked to add a Passenger");
     },
   async getData(){
    await axios.get(
@@ -45,7 +42,8 @@ export default {
   }
   },
  mounted(){
-  this.getData()
+  this.getData();
+  
   }  
 }
 
