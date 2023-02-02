@@ -18,7 +18,7 @@
   <table border="1" style="margin:auto">
     <thead>
       <tr>
-        <th style="width: 100px">Airline</th>
+        <th style="width: 100px">Airline Details</th>
         <th style="width: 100px">Passenger Name</th>
         <th style="width: 100px">Number Of Trips</th>   
         <th style="width: 100px"></th>    
