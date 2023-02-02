@@ -52,6 +52,7 @@ export default {
   data(){
     return{
     airlineData:[],
+    passData:[],
     reqObj : {
       name:'John Doe',
       trips:250,
@@ -82,13 +83,25 @@ export default {
   },
   async updatePassenger(id){
    
+    var airlinename='';
+    var passid='';
+
     await axios.get(
     `https://api.instantwebtools.net/v1/passenger/`+id
-  ).then((response)=>this.airlineData=response.data.data)
+  ).then((response)=>this.passData=response.data)
   .catch(error=>console.log(error))
-  console.log(this.airlineData);
-  
-    await axios.post('https://api.instantwebtools.net/v1/passenger/'+id,this.reqObj).then((response)=>{
+  console.log(this.passData);
+
+    this.reqObj.name=this.passData.name;
+    this.reqObj.trips=this.passData.trips;
+   passid=this.passData._id;
+
+    for(var i=0;i<this.passData.airline.length;i++){
+      airlinename=this.passData.airline[i].name;
+    }
+    this.reqObj.airline=airlinename;
+
+    await axios.post('https://api.instantwebtools.net/v1/passenger/'+passid,this.reqObj).then((response)=>{
         console.log("Passenger data updated successfully"+response.data)
       }).catch(error=>console.log(error));
   }
