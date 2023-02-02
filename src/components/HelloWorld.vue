@@ -18,16 +18,16 @@
   <table border="1" style="margin:auto">
     <thead>
       <tr>
+        <th style="width: 100px">Airline</th>
         <th style="width: 100px">Passenger Name</th>
-        <th style="width: 100px">Number Of Trips</th>
-        <th style="width: 100px">Airline</th>   
+        <th style="width: 100px">Number Of Trips</th>   
         <th style="width: 100px"></th>    
         <th style="width: 100px"></th>
       </tr>
     </thead>
     <tbody>
       <tr v-for="data in airlineData" v-bind:key="data.id">
-        <td>{{ data.airline }}</td>
+        <td>{{ data.airline}}</td>
         <td>{{ data.name }}</td>
         <td>{{ data.trips }}</td>  
         <td><button type="button" v-on:click="updatePassenger(data.id)">Edit</button></td>    
@@ -69,7 +69,7 @@ export default {
   async getData(){
    await axios.get(
     `https://api.instantwebtools.net/v1/passenger?page=0&size=10`
-  ).then((response)=>this.airlineData=response.data)
+  ).then((response)=>this.airlineData=response.data.data)
   .catch(error=>console.log(error))
   console.log(this.airlineData);
   }
