@@ -17,4 +17,3 @@ axios.defaults.headers.common = {
 axios.defaults.headers.post['xsrfCookieName'] = 'CSRFToken';
 axios.defaults.headers.post['xsrfHeaderName'] = 'X-CSRFToken';
 axios.defaults.headers.post['responseType'] = 'json';
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
