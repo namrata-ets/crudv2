@@ -53,6 +53,7 @@ export default {
     return{
     airlineData:[],
     passData:[],
+    airlineName:[],
     reqObj : {
       name:'John Doe',
       trips:250,
@@ -70,10 +71,15 @@ export default {
     },
   async getData(){
    await axios.get(
-    `https://api.instantwebtools.net/v1/passenger?page=3863&size=10`
+    `https://api.instantwebtools.net/v1/passenger?page=3862&size=10`
   ).then((response)=>this.airlineData=response.data.data)
   .catch(error=>console.log(error))
   console.log(this.airlineData);
+
+  for(var i=0;i<this.airlineData.length;i++){
+      this.airlineName=this.airlineData[i].airline;
+      console.log(this.airlineName);
+  }
   },
   async deletePassenger(id){
     await axios.delete('https://api.instantwebtools.net/v1/passenger/'+id).then(() => {
@@ -94,7 +100,7 @@ export default {
 
     this.reqObj.name=this.passData.name;
     this.reqObj.trips=this.passData.trips;
-   passid=this.passData._id;
+    passid=this.passData._id;
 
     for(var i=0;i<this.passData.airline.length;i++){
       airlinename=this.passData.airline[i].name;
