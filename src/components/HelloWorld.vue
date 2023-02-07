@@ -36,7 +36,7 @@
       </thead>
       <tbody>
         <tr v-for="data in airlineData" v-bind:key="data.id">
-          <td v-for="airline in alldata" v-bind:key="airline.id">
+          <td v-for="airline in data.airline" v-bind:key="airline.id">
             {{ airline.name }}
           </td>
           <td>{{ data.name }}</td>
@@ -54,6 +54,7 @@
         </tr>
       </tbody>
     </table>
+    
   </div>
 </template>
 
@@ -68,6 +69,7 @@ export default {
   },
   data() {
     return {
+      page:1,
       airlineData: [],
       passData: [],
       alldata: [],
@@ -96,17 +98,6 @@ export default {
         .get(`https://api.instantwebtools.net/v1/passenger?page=3889&size=10`)
         .then((response) => (this.airlineData = response.data.data))
         .catch((error) => console.log(error));
-      console.log(this.airlineData);
-
-      for (var i = 0; i < this.airlineData.length; i++) {
-        this.alldata = this.airlineData[i].airline;
-       // console.log(this.alldata);
-        this.adata.push(this.alldata);
-        //console.log(
-         // "Elements from the array are: " + JSON.stringify(this.adata)
-       // );
-      }
-      console.log("Final array:"+JSON.stringify(this.adata));
     },
     async deletePassenger(id) {
       await axios
